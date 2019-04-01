@@ -16,8 +16,10 @@ NO_OF_ROUNDS = 0
 dataFrameList = list()
 
 
-# Plot the actual prices for all stocks
 def plt_prices():
+    """
+    plot the actual prices for all stocks
+    """
     print "start"
     plt.cla()
     prices = list()
@@ -33,15 +35,16 @@ def plt_prices():
         plt.show()
 
 
-# Plot profit curve of every stocks
-# sum-model
 def plt_profit(total_wealth=None, model='prod'):
+    """
+    Plot profit curve of every stock
+    sum-model
+    """
     plt.cla()
     price_rel = list()
     # compute price relatives for each stock
     for dataFrame in dataFrameList:
         price_rel.append([round(dataFrame.iloc[i][0] / dataFrame.iloc[i][1], 6) for i in range(NO_OF_ROUNDS)])
-    # print "price_rel", price_rel
 
     print NO_OF_ROUNDS
     # setup a profit list
@@ -72,7 +75,7 @@ def plt_profit(total_wealth=None, model='prod'):
     plt.show()
 
 
-with open('example.csv') as csvfile:
+with open('tickers.csv') as csvfile:
     readCSV = csv.reader(csvfile, delimiter=',')
     for row in readCSV:
         ticker = ['EOD' + '/' + row[0] + '.1', 'EOD'+ '/' + row[0] + '.4']
